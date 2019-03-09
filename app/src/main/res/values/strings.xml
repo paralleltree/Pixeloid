@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pixeloid</string>
+    <string name="empty_result">No results found</string>
 </resources>

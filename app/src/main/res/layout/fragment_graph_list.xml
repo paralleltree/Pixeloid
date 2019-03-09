@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.util.List" />
+        <import type="androidx.lifecycle.LiveData" />
+
+        <import type="net.paltee.pixeloid.model.Resource" />
+        <import type="net.paltee.pixeloid.model.Status" />
+        <import type="net.paltee.pixeloid.model.Graph" />
+
+        <variable
+            name="graphs"
+            type="LiveData&lt;Resource&lt;List&lt;Graph>>>" />
+    </data>
+
+    <net.paltee.pixeloid.ui.common.ScrollChildSwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/graph_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/graph_item" />
+
+            <TextView
+                android:id="@+id/no_results_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@{@string/empty_result}"
+                app:visibleGone="@{graphs.status == Status.SUCCESS &amp;&amp; graphs.data.size == 0}" />
+
+        </RelativeLayout>
+    </net.paltee.pixeloid.ui.common.ScrollChildSwipeRefreshLayout>
+</layout>
