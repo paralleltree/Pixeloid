@@ -31,6 +31,7 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$support_version"
     implementation "androidx.recyclerview:recyclerview:$support_version"
+    implementation "com.google.android.material:material:$support_version"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
 

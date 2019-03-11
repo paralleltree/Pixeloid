@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import net.paltee.pixeloid.api.QueryResponse
 import net.paltee.pixeloid.model.Graph
 import net.paltee.pixeloid.model.Resource
 import net.paltee.pixeloid.model.User
@@ -24,7 +25,17 @@ class GraphListViewModel @Inject constructor(graphRepository: GraphRepository) :
                 }
             }
 
+    private val pixelQuery = MutableLiveData<Graph>()
+    val pixelResponse: LiveData<Resource<QueryResponse>> = Transformations
+            .switchMap(pixelQuery) { graph ->
+                graphRepository.incrementPixel(user.value!!, graph.id)
+            }
+
     init {
         _user.value = User("paralleltree", "dummy")
+    }
+
+    fun incrementGraph(graph: Graph) {
+        pixelQuery.postValue(graph)
     }
 }

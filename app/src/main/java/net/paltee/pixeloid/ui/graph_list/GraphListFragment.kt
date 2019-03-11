@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import net.paltee.pixeloid.AppExecutors
 import net.paltee.pixeloid.R
 import net.paltee.pixeloid.binding.FragmentDataBindingComponent
 import net.paltee.pixeloid.databinding.FragmentGraphListBinding
 import net.paltee.pixeloid.di.Injectable
+import net.paltee.pixeloid.model.Status
 import net.paltee.pixeloid.util.autoCleared
 import javax.inject.Inject
 
@@ -52,9 +54,17 @@ class GraphListFragment : Fragment(), Injectable {
                 appExecutors = appExecutors
         ) { graph ->
             // onClick
+            graphListViewModel.incrementGraph(graph)
         }
         binding.graphList.adapter = rvAdapter
         adapter = rvAdapter
+
+        graphListViewModel.pixelResponse.observe(viewLifecycleOwner, Observer { result ->
+            when (result.status) {
+                Status.SUCCESS -> Snackbar.make(view, R.string.query_successful, Snackbar.LENGTH_SHORT).show()
+                Status.ERROR -> Snackbar.make(view, R.string.query_fail, Snackbar.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun initRecyclerView() {
