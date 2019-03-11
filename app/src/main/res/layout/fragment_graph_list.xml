@@ -21,6 +21,7 @@
     </data>
 
     <net.paltee.pixeloid.ui.common.ScrollChildSwipeRefreshLayout
+        android:id="@+id/refresh_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:refreshing="@{isLoading}">

@@ -38,4 +38,8 @@ class GraphListViewModel @Inject constructor(graphRepository: GraphRepository) :
     fun incrementGraph(graph: Graph) {
         pixelQuery.postValue(graph)
     }
+
+    fun retry(){
+        _user.postValue(_user.value)
+    }
 }
