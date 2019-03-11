@@ -14,11 +14,16 @@
         <variable
             name="graphs"
             type="LiveData&lt;Resource&lt;List&lt;Graph>>>" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
     </data>
 
     <net.paltee.pixeloid.ui.common.ScrollChildSwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:refreshing="@{isLoading}">
 
         <RelativeLayout
             android:layout_width="match_parent"

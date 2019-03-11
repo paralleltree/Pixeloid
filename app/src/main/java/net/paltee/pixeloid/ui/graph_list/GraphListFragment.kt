@@ -70,6 +70,11 @@ class GraphListFragment : Fragment(), Injectable {
     private fun initRecyclerView() {
         binding.graphs = graphListViewModel.graphs
         graphListViewModel.graphs.observe(viewLifecycleOwner, Observer { result ->
+            binding.isLoading = when (result.status) {
+                Status.LOADING -> true
+                Status.SUCCESS -> false
+                Status.ERROR -> false
+            }
             adapter.submitList(result?.data)
         })
     }
