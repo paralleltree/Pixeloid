@@ -1,11 +1,13 @@
 package net.paltee.pixeloid.di
 
+import android.app.Application
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import net.paltee.pixeloid.api.GraphsResponseAdapter
 import net.paltee.pixeloid.api.PixelaService
+import net.paltee.pixeloid.db.PreferenceDao
 import net.paltee.pixeloid.util.LiveDataCallAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -29,4 +31,10 @@ class DataModule {
                     .addCallAdapterFactory(LiveDataCallAdapterFactory())
                     .build()
                     .create(PixelaService::class.java)
+
+    @Singleton
+    @Provides
+    fun providePreferenceDao(app: Application): PreferenceDao {
+        return PreferenceDao(app.applicationContext)
+    }
 }
