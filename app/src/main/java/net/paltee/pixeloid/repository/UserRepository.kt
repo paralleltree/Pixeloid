@@ -16,5 +16,7 @@ class UserRepository @Inject constructor(
 ) {
     fun loadUser(name: String): LiveData<User> = userDao.getUserByName(name)
 
-    fun insertUser(name: String, token: String) = userDao.insertUser(User(name, token))
+    fun insertUser(user: User) = appExecutors.diskIO().execute {
+        userDao.insertUser(user)
+    }
 }
