@@ -8,7 +8,14 @@
     <fragment
         android:id="@+id/graphListFragment"
         android:name="net.paltee.pixeloid.ui.graph_list.GraphListFragment"
-        android:label="GraphListFragment" />
+        android:label="GraphListFragment">
+
+        <action
+            android:id="@+id/action_main_go_login"
+            app:destination="@+id/login_nav"
+            app:popUpTo="@+id/main_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <navigation
         android:id="@+id/login_nav"

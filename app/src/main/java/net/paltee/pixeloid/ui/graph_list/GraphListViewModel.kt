@@ -5,19 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import net.paltee.pixeloid.api.QueryResponse
+import net.paltee.pixeloid.db.PreferenceDao
 import net.paltee.pixeloid.model.Graph
 import net.paltee.pixeloid.model.Resource
 import net.paltee.pixeloid.model.User
 import net.paltee.pixeloid.repository.GraphRepository
+import net.paltee.pixeloid.repository.UserRepository
 import net.paltee.pixeloid.util.AbsentLiveData
 import javax.inject.Inject
 
-class GraphListViewModel @Inject constructor(graphRepository: GraphRepository) : ViewModel() {
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
+class GraphListViewModel @Inject constructor(
+        userRepository: UserRepository,
+        graphRepository: GraphRepository,
+        preferenceDao: PreferenceDao
+) : ViewModel() {
+    private val username = MutableLiveData<String>()
+    val user: LiveData<User> = Transformations
+            .switchMap(username) { name ->
+                userRepository.loadUser(name)
+            }
 
     val graphs: LiveData<Resource<List<Graph>>> = Transformations
-            .switchMap(_user) { user ->
+            .switchMap(user) { user ->
                 if (user == null) {
                     AbsentLiveData.create()
                 } else {
@@ -32,14 +41,14 @@ class GraphListViewModel @Inject constructor(graphRepository: GraphRepository) :
             }
 
     init {
-        _user.value = User("paralleltree", "dummy")
+        username.postValue(preferenceDao.currentUserName)
     }
 
     fun incrementGraph(graph: Graph) {
         pixelQuery.postValue(graph)
     }
 
-    fun retry(){
-        _user.postValue(_user.value)
+    fun retry() {
+        username.postValue(user.value?.name)
     }
 }

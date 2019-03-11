@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import net.paltee.pixeloid.AppExecutors
 import net.paltee.pixeloid.R
@@ -66,6 +67,12 @@ class GraphListFragment : Fragment(), Injectable {
                 Status.ERROR -> Snackbar.make(view, R.string.query_fail, Snackbar.LENGTH_SHORT).show()
             }
         })
+
+        graphListViewModel.user.observe(viewLifecycleOwner, Observer { user ->
+            if (user == null) {
+                navController().navigate(R.id.action_main_go_login)
+            }
+        })
     }
 
     private fun initRecyclerView() {
@@ -82,4 +89,6 @@ class GraphListFragment : Fragment(), Injectable {
             adapter.submitList(result?.data)
         })
     }
+
+    fun navController() = findNavController()
 }
