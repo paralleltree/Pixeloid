@@ -76,6 +76,9 @@ class GraphListFragment : Fragment(), Injectable {
                 Status.SUCCESS -> false
                 Status.ERROR -> false
             }
+            if (result.status == Status.ERROR) {
+                Snackbar.make(binding.graphList, R.string.load_fail, Snackbar.LENGTH_SHORT).show()
+            }
             adapter.submitList(result?.data)
         })
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pixeloid</string>
     <string name="empty_result">No results found</string>
+    <string name="load_fail">Loading failed.</string>
     <string name="query_successful">Request sent successfully!</string>
     <string name="query_fail">Request failed.</string>
 </resources>
