@@ -9,4 +9,22 @@
         android:id="@+id/graphListFragment"
         android:name="net.paltee.pixeloid.ui.graph_list.GraphListFragment"
         android:label="GraphListFragment" />
+
+    <navigation
+        android:id="@+id/login_nav"
+        app:startDestination="@id/loginFragment">
+
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="net.paltee.pixeloid.ui.login.LoginFragment"
+            android:label="login_fragment"
+            tools:layout="@layout/fragment_login">
+
+            <action
+                android:id="@+id/action_login_go_back"
+                app:destination="@+id/main_nav"
+                app:popUpTo="@id/login_nav"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
 </navigation>
