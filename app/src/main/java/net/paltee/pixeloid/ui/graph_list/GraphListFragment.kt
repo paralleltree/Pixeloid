@@ -78,12 +78,13 @@ class GraphListFragment : Fragment(), Injectable {
     private fun initRecyclerView() {
         binding.graphs = graphListViewModel.graphs
         graphListViewModel.graphs.observe(viewLifecycleOwner, Observer { result ->
-            binding.isLoading = when (result.status) {
+            binding.isLoading = when (result?.status) {
                 Status.LOADING -> true
                 Status.SUCCESS -> false
                 Status.ERROR -> false
+                else -> false
             }
-            if (result.status == Status.ERROR) {
+            if (result?.status == Status.ERROR) {
                 Snackbar.make(binding.graphList, R.string.load_fail, Snackbar.LENGTH_SHORT).show()
             }
             adapter.submitList(result?.data)
