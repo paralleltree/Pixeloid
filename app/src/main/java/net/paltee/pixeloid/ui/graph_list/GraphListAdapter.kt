@@ -1,6 +1,7 @@
 package net.paltee.pixeloid.ui.graph_list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
@@ -14,7 +15,7 @@ import net.paltee.pixeloid.ui.common.DataBoundListAdapter
 class GraphListAdapter(
         private val dataBindingComponent: DataBindingComponent,
         appExecutors: AppExecutors,
-        private val clickCallback: ((Graph) -> Unit)?
+        private val clickCallbacks: GraphItemCallbacks
 ) : DataBoundListAdapter<Graph, GraphItemBinding>(
         appExecutors = appExecutors,
         diffCallback = object : DiffUtil.ItemCallback<Graph>() {
@@ -40,13 +41,21 @@ class GraphListAdapter(
         )
         binding.root.setOnClickListener {
             binding.graph?.let {
-                clickCallback?.invoke(it)
+                clickCallbacks?.onItemClick(it)
             }
+        }
+        binding.setMoreCallback {
+            clickCallbacks.onMoreButtonClick(it, binding.graph!!)
         }
         return binding
     }
 
     override fun bind(binding: GraphItemBinding, item: Graph) {
         binding.graph = item
+    }
+
+    abstract class GraphItemCallbacks {
+        abstract fun onItemClick(graph: Graph)
+        abstract fun onMoreButtonClick(view: View, graph: Graph)
     }
 }

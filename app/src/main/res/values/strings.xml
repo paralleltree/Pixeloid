@@ -4,6 +4,7 @@
     <string name="username">User Name</string>
     <string name="token">Token</string>
     <string name="login">Login</string>
+    <string name="open_graph">Open the graph</string>
 
     <string name="empty_result">No results found</string>
     <string name="load_fail">Loading failed.</string>

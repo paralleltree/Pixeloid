@@ -5,6 +5,10 @@
         <variable
             name="graph"
             type="net.paltee.pixeloid.model.Graph" />
+
+        <variable
+            name="moreCallback"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <RelativeLayout
@@ -32,5 +36,15 @@
                 android:layout_height="wrap_content"
                 android:text="@{graph.id}" />
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:onClickListener="@{moreCallback}"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:tint="@color/colorNeutralDark" />
     </RelativeLayout>
 </layout>
