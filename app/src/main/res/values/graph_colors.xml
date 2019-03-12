@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="graph_colors">
+        <item>shibafu</item>
+        <item>momiji</item>
+        <item>sora</item>
+        <item>ichou</item>
+        <item>ajisai</item>
+        <item>kuro</item>
+    </string-array>
+</resources>

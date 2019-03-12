@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Pixeloid</string>
 
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="unit">Unit</string>
+    <string name="type">Type</string>
+    <string name="type_int">Integer</string>
+    <string name="type_float">Float</string>
+    <string name="color">Color</string>
+    <string name="timezone">Time Zone</string>
+    <string name="done">Done</string>
     <string name="users">Users</string>
     <string name="username">User Name</string>
     <string name="token">Token</string>

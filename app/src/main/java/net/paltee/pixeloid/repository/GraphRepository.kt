@@ -2,6 +2,7 @@ package net.paltee.pixeloid.repository
 
 import androidx.lifecycle.LiveData
 import net.paltee.pixeloid.AppExecutors
+import net.paltee.pixeloid.api.ApiResponse
 import net.paltee.pixeloid.api.PixelaService
 import net.paltee.pixeloid.api.QueryResponse
 import net.paltee.pixeloid.model.Graph
@@ -22,6 +23,15 @@ class GraphRepository @Inject constructor(
             override fun loadFromDb(): LiveData<List<Graph>> = AbsentLiveData.create()
             override fun saveCallResult(item: List<Graph>) = Unit
             override fun shouldFetch(data: List<Graph>?) = true
+        }.asLiveData()
+    }
+
+    fun createGraph(user: User, graph: Graph): LiveData<Resource<QueryResponse>> {
+        return object : NetworkBoundResource<QueryResponse>(appExecutors) {
+            override fun createCall() = pixelaService.createGraph(user.token, user.name, graph)
+            override fun loadFromDb(): LiveData<QueryResponse> = AbsentLiveData.create()
+            override fun saveCallResult(item: QueryResponse) = Unit
+            override fun shouldFetch(data: QueryResponse?) = true
         }.asLiveData()
     }
 

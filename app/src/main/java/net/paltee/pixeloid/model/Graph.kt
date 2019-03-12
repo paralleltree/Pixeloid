@@ -1,6 +1,11 @@
 package net.paltee.pixeloid.model
 
-data class Graph(val id: String,
-                 val name: String,
-                 val type: String,
-                 val color: String)
+import java.io.Serializable
+
+data class Graph(var id: String,
+                 var name: String,
+                 var unit: String,
+                 var timezone: String,
+                 var type: String = "int",
+                 var color: String = "shibafu"
+) : Serializable
