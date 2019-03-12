@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pixeloid</string>
 
+    <string name="users">Users</string>
     <string name="username">User Name</string>
     <string name="token">Token</string>
     <string name="login">Login</string>

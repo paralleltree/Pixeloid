@@ -14,6 +14,8 @@ class UserRepository @Inject constructor(
         private val appExecutors: AppExecutors,
         private val userDao: UserDao
 ) {
+    fun loadUsers(): LiveData<List<User>> = userDao.getUsers()
+
     fun loadUser(name: String): LiveData<User> = userDao.getUserByName(name)
 
     fun insertUser(user: User) = appExecutors.diskIO().execute {

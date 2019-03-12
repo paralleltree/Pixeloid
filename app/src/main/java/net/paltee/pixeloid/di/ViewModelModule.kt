@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import net.paltee.pixeloid.ui.graph_list.GraphListViewModel
 import net.paltee.pixeloid.ui.login.LoginViewModel
+import net.paltee.pixeloid.ui.user_list.UserListViewModel
 import net.paltee.pixeloid.viewmodel.PixeloidViewModelFactory
 
 @Suppress("unused")
@@ -21,6 +22,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserListViewModel::class)
+    abstract fun bindUserListViewModel(userListViewModel: UserListViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: PixeloidViewModelFactory): ViewModelProvider.Factory

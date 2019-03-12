@@ -11,11 +11,20 @@
         android:label="GraphListFragment">
 
         <action
+            android:id="@+id/action_main_go_users"
+            app:destination="@+id/userListFragment" />
+
+        <action
             android:id="@+id/action_main_go_login"
             app:destination="@+id/login_nav"
             app:popUpTo="@+id/main_nav"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="net.paltee.pixeloid.ui.user_list.UserListFragment"
+        android:label="UserListFragment" />
 
     <navigation
         android:id="@+id/login_nav"

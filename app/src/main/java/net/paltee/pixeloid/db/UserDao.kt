@@ -7,7 +7,10 @@ import net.paltee.pixeloid.model.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM Users WHERE name = :name")
+    @Query("SELECT * FROM users")
+    fun getUsers(): LiveData<List<User>>
+
+    @Query("SELECT * FROM users WHERE name = :name")
     fun getUserByName(name: String): LiveData<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
