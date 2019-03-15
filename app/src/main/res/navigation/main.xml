@@ -11,6 +11,10 @@
         android:label="GraphListFragment">
 
         <action
+            android:id="@+id/edit_graph"
+            app:destination="@+id/editGraphFragment" />
+
+        <action
             android:id="@+id/show_users"
             app:destination="@+id/userListFragment" />
 
@@ -19,6 +23,19 @@
             app:destination="@+id/login_nav"
             app:popUpTo="@+id/main_nav"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editGraphFragment"
+        android:name="net.paltee.pixeloid.ui.edit_graph.EditGraphFragment"
+        android:label="EditGraphFragment">
+
+        <argument
+            android:name="isNew"
+            app:argType="boolean" />
+        <argument
+            android:name="graph"
+            app:argType="net.paltee.pixeloid.model.Graph" />
     </fragment>
 
     <fragment

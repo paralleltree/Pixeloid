@@ -64,6 +64,9 @@ class GraphListFragment : Fragment(), Injectable {
         graphListViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(GraphListViewModel::class.java)
         binding.setLifecycleOwner(viewLifecycleOwner)
+        binding.setNewGraphCallback {
+            navController().navigate(GraphListFragmentDirections.editGraph(true, Graph()))
+        }
         binding.refreshContainer.setOnRefreshListener { graphListViewModel.retry() }
         initRecyclerView()
         val rvAdapter = GraphListAdapter(

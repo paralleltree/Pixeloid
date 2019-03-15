@@ -18,6 +18,10 @@
         <variable
             name="isLoading"
             type="Boolean" />
+
+        <variable
+            name="newGraphCallback"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <net.paltee.pixeloid.ui.common.ScrollChildSwipeRefreshLayout
@@ -45,6 +49,15 @@
                 android:layout_centerVertical="true"
                 android:text="@{@string/empty_result}"
                 app:visibleGone="@{graphs.status == Status.SUCCESS &amp;&amp; graphs.data.size == 0}" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/text_margin"
+                android:onClick="@{newGraphCallback}"
+                android:src="@drawable/ic_add_white_24dp" />
 
         </RelativeLayout>
     </net.paltee.pixeloid.ui.common.ScrollChildSwipeRefreshLayout>
