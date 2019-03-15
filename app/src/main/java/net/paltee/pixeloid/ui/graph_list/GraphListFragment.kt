@@ -55,7 +55,7 @@ class GraphListFragment : Fragment(), Injectable {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.users_list -> navController().navigate(R.id.action_main_go_users)
+            R.id.users_list -> navController().navigate(R.id.show_users)
         }
         return true
     }
@@ -102,7 +102,7 @@ class GraphListFragment : Fragment(), Injectable {
 
         graphListViewModel.user.observe(viewLifecycleOwner, Observer { user ->
             if (user == null) {
-                navController().navigate(R.id.action_main_go_login)
+                navController().navigate(R.id.go_login)
             }
         })
     }

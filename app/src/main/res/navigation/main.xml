@@ -11,11 +11,11 @@
         android:label="GraphListFragment">
 
         <action
-            android:id="@+id/action_main_go_users"
+            android:id="@+id/show_users"
             app:destination="@+id/userListFragment" />
 
         <action
-            android:id="@+id/action_main_go_login"
+            android:id="@+id/go_login"
             app:destination="@+id/login_nav"
             app:popUpTo="@+id/main_nav"
             app:popUpToInclusive="true" />
